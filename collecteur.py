@@ -1,14 +1,18 @@
 import psutil, sqlite3, time, datetime, platform, socket, requests
 from ping3 import ping
 
+def get_host_info():
+    return socket.gethostname(), platform.system()
+hostname, os_system = get_host_info()
+
 SCENARIO_NAME = "Scenario_Base_NoRules"
 INTERVAL = 1.0
-DB_NAME = "metriques_reseau.db"
+DB_NAME = f"metriques_{hostname}.db"
 
 TARGETS = [
     {
         "name": "Gateway",
-        "host": "10.0.0.2",       
+        "host": "172.18.11.254",       
         "url": None                  
     },
     {
@@ -38,9 +42,6 @@ def init_db():
     ''')
     conn.commit()
     conn.close()
-
-def get_host_info():
-    return socket.gethostname(), platform.system()
 
 def measure_ping(host):
     if not host: return None
