@@ -5,7 +5,7 @@ def get_host_info():
     return socket.gethostname(), platform.system()
 hostname, os_system = get_host_info()
 
-SCENARIO_NAME = "Scenario_Base_NoRules"
+SCENARIO_NAME = "Scenario_SolutionB"
 INTERVAL = 1.0
 DB_NAME = f"metriques_{hostname}.db"
 
